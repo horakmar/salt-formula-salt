@@ -20,7 +20,7 @@ update-guestfs-appliance:
 
 {%- if cluster.engine == "virt" %}
 
-salt_libvirt_service:
+salt_libvirt_service_{{ cluster_name }}:
   service.running:
   - name: {{ control.virt_service }}
   - enable: true
@@ -108,7 +108,7 @@ salt_control_virt_{{ cluster_name }}_{{ node_name }}:
       {%- endif %}
   - unless: virsh list --all --name| grep -E "^{{ node_name }}.{{ cluster.domain }}$"
   - require:
-    - salt_libvirt_service
+    - salt_libvirt_service_{{ cluster_name }}
 
 {%- if node.get("autostart", True) %}
 
