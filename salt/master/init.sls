@@ -3,6 +3,9 @@ include:
 {%- if pillar.salt.master.reactor is defined %}
 - salt.master.reactor
 {%- endif %}
+{%- if pillar.salt.master.ddns is defined %}
+- salt.master.ddns_registrator
+{%- endif %}
 - salt.master.env
 - salt.master.pillar
 - salt.master.minion

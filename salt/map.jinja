@@ -30,9 +30,13 @@ default:
 Arch:
   pkgs:
   - salt
+  ddns_pkgs:
+  - python-dnspython
 Debian:
   pkgs:
   - salt-master
+  ddns_pkgs:
+  - python-dnspython
 Gentoo:
   pkgs:
   - app-admin/salt
@@ -42,6 +46,8 @@ MacOS:
 RedHat:
   pkgs:
   - salt-master
+  ddns_pkgs:
+  - python-dnspython
 {%- endload %}
 
 {%- if pillar.salt.master is defined %}

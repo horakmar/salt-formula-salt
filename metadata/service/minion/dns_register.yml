@@ -1,0 +1,2 @@
+applications:
+- salt.minion.dns_register
