@@ -1,0 +1,6 @@
+{%- from "salt/map.jinja" import master with context -%}
+{
+{%- for key in master.ddns.get('keys', []) %}
+"{{ key.name }}.": "{{ key.key }}"{{ "," if not loop.last else "" }}
+{%- endfor %}
+}

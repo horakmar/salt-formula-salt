@@ -4,7 +4,7 @@ include:
 - salt.master.reactor
 {%- endif %}
 {%- if pillar.salt.master.ddns is defined %}
-- salt.master.ddns_registrator
+- salt.master.ddns
 {%- endif %}
 - salt.master.env
 - salt.master.pillar
