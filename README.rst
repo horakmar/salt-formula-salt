@@ -727,6 +727,44 @@ Syndicated master with multiple master of masters:
         - host: master-of-master-host2
         timeout: 5
 
+Dynamic DNS configuration
+-------------------------
+
+Salt master can register minions in DNS server using DDNS (dynamic DNS)
+update mechanism via salt.runners.ddns module. DNS server with dynamic
+updates allowed is required. Authorization via {tsig-key} is available.
+Recommended is DNS server configured via salt-formula-bind.
+Mechanism uses event-reactor system.
+
+Master pillar:
+
+ .. code-block:: yaml
+    salt:
+      master:
+        ddns:
+          enabled: True
+          keys:
+            key: <tsig-key>
+            name: <tsig-key-name>
+        reactor:
+          dns/node/register:
+          - salt://salt/reactor/node_ddns_register.sls
+
+Minion pillar:
+
+ .. code-block:: yaml
+    salt:
+      minion:
+        ddns:
+          server: <dns-server-ip>
+          keyname: <tsig-key-name>
+          ttl: 300
+
+Minions can be registered in DNS calling:
+
+  .. code-block:: bash
+    salt '*' state.apply salt.minion.dns_register
+
 Salt Minion
 -----------
 
