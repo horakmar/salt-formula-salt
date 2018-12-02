@@ -739,6 +739,7 @@ Mechanism uses event-reactor system.
 Master pillar:
 
 .. code-block:: yaml
+
     salt:
       master:
         ddns:
@@ -753,6 +754,7 @@ Master pillar:
 Minion pillar:
 
 .. code-block:: yaml
+
     salt:
       minion:
         ddns:
@@ -763,6 +765,7 @@ Minion pillar:
 Minions can be registered in DNS calling:
 
 .. code-block:: bash
+
     salt '*' state.apply salt.minion.dns_register
 
 Salt Minion
