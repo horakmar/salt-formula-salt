@@ -2,8 +2,8 @@
 {%- for zone_name, zone in data.data.get('records', {}).iteritems() %}
 {%- for record in zone %}
 
-ddns_update_{{ zone_name }}_{{ loop.index }}:
-  runner.ddns.update:
+ddns_record_{{ zone_name }}_{{ loop.index }}:
+  runner.ddns.create:
   - args:
     - zone: {{ zone_name }}
     - name: {{ record['name'] }}
@@ -14,7 +14,6 @@ ddns_update_{{ zone_name }}_{{ loop.index }}:
     - keyfile: /etc/salt/ddns.keyring
     - nameserver: {{ ddns.get('server', '127.0.0.1') }}
     - timeout: 10
-    - replace: True
     - keyalgorithm: 'HMAC-MD5.SIG-ALG.REG.INT'
 {%- endfor %}
 {%- endfor %}
