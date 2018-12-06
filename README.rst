@@ -773,6 +773,7 @@ Minion pillar:
 Manual calling:
 
 .. code-block:: bash
+
     # Minion register
     salt '*' state.apply salt.minion.dns_register
     #
