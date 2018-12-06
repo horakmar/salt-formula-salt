@@ -765,9 +765,9 @@ Minion pillar:
           ttl: 300
         dns_static:
           zone.example.com:
-      		- name: appname
-		        type: CNAME
-    		    value: appserver01
+          - name: appname
+            type: CNAME
+            value: appserver01
 
 
 Manual calling:
@@ -775,7 +775,7 @@ Manual calling:
 .. code-block:: bash
     # Minion register
     salt '*' state.apply salt.minion.dns_register
-    
+    #
     # Static DNS records
     salt '*' state.apply salt.minion.dns_static
 
