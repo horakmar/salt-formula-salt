@@ -749,7 +749,9 @@ Master pillar:
             name: <tsig-key-name>
         reactor:
           dns/node/register:
-          - salt://salt/reactor/node_ddns_register.sls
+          - salt://salt/reactor/ddns_node_register.sls
+          dns/static/records:
+          - salt://salt/reactor/ddns_static_records.sls
 
 Minion pillar:
 
@@ -761,12 +763,22 @@ Minion pillar:
           server: <dns-server-ip>
           keyname: <tsig-key-name>
           ttl: 300
+        dns_static:
+          zone.example.com:
+      		- name: appname
+		        type: CNAME
+    		    value: appserver01
 
-Minions can be registered in DNS calling:
+
+Manual calling:
 
 .. code-block:: bash
-
+    # Minion register
     salt '*' state.apply salt.minion.dns_register
+    
+    # Static DNS records
+    salt '*' state.apply salt.minion.dns_static
+
 
 Salt Minion
 -----------
