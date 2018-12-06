@@ -13,6 +13,7 @@ include:
 {%- endif %}
 {%- if pillar.salt.minion.env_vars is defined %}
 - salt.minion.env_vars
+{%- endif %}
 {%- if pillar.salt.minion.ddns is defined %}
 - salt.minion.dns_register
 {%-   if pillar.salt.minion.dns_static is defined %}
